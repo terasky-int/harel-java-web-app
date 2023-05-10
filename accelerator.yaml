@@ -22,7 +22,7 @@ accelerator:
     required: true
 
   - name: gitProject
-    label: Git project configuration
+    label: Git Project
     description: Provide a git project name.
     dataType: string
     inputType: text
@@ -31,7 +31,7 @@ accelerator:
     validationRegex: "^[a-zA-Z0-9-]+$"
 
   - name: gitBranch
-    label: Git project configuration
+    label: Git Branch
     description: Provide default branch name.
     dataType: string
     inputType: text
@@ -51,7 +51,7 @@ engine:
   chain:
   - merge:
     - include: [ "**/*" ]
-      exclude: [ "config/*.yaml", "Tiltfile", "README.md", "grype.yaml", "catalog/*.yaml", ".github/workflows/**" ]
+      exclude: [ "config/*.yaml", "Tiltfile", "README.md", "grype.yaml", "catalog/*.yaml", ".github/workflows/**", "docs" ]
     - include: [ "Tiltfile" ]
       chain:
       - type: ReplaceText
