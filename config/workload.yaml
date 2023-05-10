@@ -1,0 +1,44 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: tanzu-java-web-app
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
+    app.kubernetes.io/part-of: tanzu-java-web-app
+spec:
+  build:
+    env:
+      - name: BP_JVM_VERSION
+        value: "11"
+  params:
+  - name: annotations
+    value:
+      autoscaling.knative.dev/minScale: "1"
+  - name: buildServiceBindings
+    value:
+      - name: settings-xml
+        kind: Secret
+        apiVersion: v1
+  - name: testing_pipeline_matching_labels
+    value:
+      apps.tanzu.vmware.com/pipeline: jenkins-pipeline
+  - name: testing_pipeline_params
+    value:
+      job-name: 'DevOps/job/tap-sonar'
+      job-params:
+        - name: urlgit
+          value: "git@GIT_URL:GIT_PROJECT/GIT_REPO.git"
+        - name: branchgit
+          value: GIT_BRANCH
+        - name: runtimeVersion
+          value: java
+        - name: projname
+          value: tanzu-java-web-app
+      secret-name: jenkins-creds
+  source:
+    git:
+      url: https://GIT_URL/GIT_PROJECT/GIT_REPO.git
+      ref:
+        branch: GIT_BRANCH
