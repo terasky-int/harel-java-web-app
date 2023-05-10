@@ -1,0 +1,10 @@
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Accelerator
+metadata:
+  name: harel-java-web-app
+  namespace: accelerator-system
+spec:
+  git:
+    url: https://github.com/terasky-int/harel-java-web-app.git
+    ref:
+      branch: main
