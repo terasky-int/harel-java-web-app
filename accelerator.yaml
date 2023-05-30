@@ -21,23 +21,23 @@ accelerator:
     defaultValue: false
     required: true
 
-  - name: gitProject
-    label: Git Project
-    description: Provide a git project name.
-    dataType: string
-    inputType: text
-    required: true
-    defaultValue: Department
-    validationRegex: "^[a-zA-Z0-9-]+$"
-
-  - name: gitBranch
-    label: Git Branch
-    description: Provide default branch name.
-    dataType: string
-    inputType: text
-    required: true
-    defaultValue: main
-    validationRegex: "^[a-z0-9-]+$"
+#  - name: gitProject
+#    label: Git Project
+#    description: Provide a git project name.
+#    dataType: string
+#    inputType: text
+#    required: true
+#    defaultValue: Department
+#    validationRegex: "^[a-zA-Z0-9-]+$"
+#
+#  - name: gitBranch
+#    label: Git Branch
+#    description: Provide default branch name.
+#    dataType: string
+#    inputType: text
+#    required: true
+#    defaultValue: main
+#    validationRegex: "^[a-z0-9-]+$"
 
   imports:
   - name: java-version
@@ -51,7 +51,7 @@ engine:
   chain:
   - merge:
     - include: [ "**/*" ]
-      exclude: [ "config/*.yaml", "Tiltfile", "README.md", "grype.yaml", "catalog/*.yaml", ".github/workflows/**", "docs" ]
+      exclude: [ "config/*.yaml", "Tiltfile", "README.md", "grype.yaml", "catalog/*.yaml", ".github/workflows/**", "docs", "fragments"]
     - include: [ "Tiltfile" ]
       chain:
       - type: ReplaceText
@@ -69,15 +69,15 @@ engine:
         substitutions:
         - text: ": tanzu-java-web-app"
           with: "': ' + #artifactId.toLowerCase()"
-        - text: "GIT_PROJECT"
-          with: " #gitProject"
-        - text: "GIT_BRANCH"
-          with: " #gitBranch"
-        - text: "GIT_REPO"
-          with: " #artifactId.toLowerCase()"
+#        - text: "GIT_PROJECT"
+#          with: " #gitProject"
+#        - text: "GIT_BRANCH"
+#          with: " #gitBranch"
+#        - text: "GIT_REPO"
+#          with: " #artifactId.toLowerCase()"
       - merge:
         - type: InvokeFragment
-          reference: tap-workload
+          reference: tap-harel-workload
         - include: [ "**" ]
         onConflict: UseFirst
 

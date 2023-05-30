@@ -29,7 +29,7 @@ spec:
       job-name: 'DevOps/job/tap-sonar'
       job-params:
         - name: urlgit
-          value: "git@GIT_URL:GIT_PROJECT/GIT_REPO.git"
+          value: GIT_URL_SSH_FORMAT # "git@GIT_URL:GIT_PROJECT/GIT_REPO.git"
         - name: branchgit
           value: GIT_BRANCH
         - name: runtimeVersion
