@@ -41,7 +41,7 @@ accelerator:
 
   imports:
   - name: java-version
-  - name: tap-workload
+  - name: tap-harel-workload
   - name: build-wrapper-maven
 
 engine:
