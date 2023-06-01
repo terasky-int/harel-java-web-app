@@ -33,7 +33,7 @@ spec:
     ref:
       branch: main
     url: https://github.com/terasky-int/harel-java-web-app.git
-    subPath: fragments/tap-workload
+    subPath: fragments/tap-harel-workload
 ```
 
 ##### 2. Apply
